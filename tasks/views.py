@@ -6,8 +6,17 @@ from .forms import TaskForm
 def task_list(request):
     tasks = Task.objects.all().order_by("-created_at")
 
+    total_tasks = tasks.count()
+    todo_tasks = tasks.filter(status="todo").count()
+    in_progress_tasks = tasks.filter(status="in_progress").count()
+    done_tasks = tasks.filter(status="done").count()
+
     return render(request, "tasks/task_list.html", {
-        "tasks": tasks
+        "tasks": tasks,
+        "total_tasks": total_tasks,
+        "todo_tasks": todo_tasks,
+        "in_progress_tasks": in_progress_tasks,
+        "done_tasks": done_tasks,
     })
 
 
