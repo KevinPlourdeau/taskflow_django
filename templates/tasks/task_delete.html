@@ -1,23 +1,39 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Supprimer une tâche</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
-    <h1>Supprimer la tâche</h1>
+<div class="container form-container">
 
-    <p>Es-tu sûr de vouloir supprimer : <strong>{{ task.title }}</strong> ?</p>
+    <div class="page-card delete-card">
+        <h1>Supprimer une tâche</h1>
 
-    <form method="POST">
-        {% csrf_token %}
-        <button type="submit">Oui, supprimer</button>
-    </form>
+        <p class="subtitle">
+            Es-tu sûr de vouloir supprimer cette tâche ?
+        </p>
 
-    <br>
+        <div class="delete-preview">
+            <strong>{{ task.title }}</strong>
 
-    <a href="/">Annuler</a>
+            {% if task.description %}
+                <p>{{ task.description }}</p>
+            {% endif %}
+        </div>
+
+        <form method="POST" class="form-actions">
+            {% csrf_token %}
+            <button type="submit" class="button danger">Oui, supprimer</button>
+            <a href="{% url 'task_list' %}" class="button secondary">Annuler</a>
+        </form>
+    </div>
+
+</div>
 
 </body>
 </html>

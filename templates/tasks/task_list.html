@@ -1,30 +1,83 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>TaskFlow</title>
-    {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <a href="/create/">Ajouter une tâche</a>
-    <h1>Mes tâches</h1>
-    {% if tasks %}
-        <ul>
+
+<div class="container">
+
+    <header class="header">
+        <div>
+            <h1>TaskFlow</h1>
+            <p class="subtitle">Application Django de gestion de tâches</p>
+        </div>
+
+        <a href="{% url 'task_create' %}" class="button">+ Ajouter une tâche</a>
+    </header>
+
+    <section class="dashboard">
+        <div class="card">
+            <span>Total</span>
+            <strong>{{ total_tasks }}</strong>
+        </div>
+
+        <div class="card">
+            <span>À faire</span>
+            <strong>{{ todo_tasks }}</strong>
+        </div>
+
+        <div class="card">
+            <span>En cours</span>
+            <strong>{{ in_progress_tasks }}</strong>
+        </div>
+
+        <div class="card">
+            <span>Terminées</span>
+            <strong>{{ done_tasks }}</strong>
+        </div>
+    </section>
+
+    <section class="tasks-list">
+        {% if tasks %}
             {% for task in tasks %}
-                <li>
-                    <strong>{{ task.title }}</strong>
-                    — {{ task.get_status_display }}
+                <article class="task">
+                    <div class="task-content">
+                        <h2>{{ task.title }}</h2>
 
-                    <br>
+                        {% if task.description %}
+                            <p class="description">{{ task.description }}</p>
+                        {% else %}
+                            <p class="description muted">Aucune description.</p>
+                        {% endif %}
 
-                    <a href="{% url 'task_update' task.id %}">Modifier</a>
-                    <a href="{% url 'task_delete' task.id %}">Supprimer</a>
-                </li>
+                        {% if task.due_date %}
+                            <p class="date">Date limite : {{ task.due_date }}</p>
+                        {% else %}
+                            <p class="date muted">Aucune date limite</p>
+                        {% endif %}
+
+                        <span class="status {{ task.status }}">{{ task.get_status_display }}</span>
+                    </div>
+
+                    <div class="actions">
+                        <a href="{% url 'task_update' task.id %}" class="edit">Modifier</a>
+                        <a href="{% url 'task_delete' task.id %}" class="delete">Supprimer</a>
+                    </div>
+                </article>
             {% endfor %}
-        </ul>
-    {% else %}
-        <p>Aucune tâche pour le moment.</p>
-    {% endif %}
+        {% else %}
+            <div class="empty">
+                <p>Aucune tâche pour le moment.</p>
+            </div>
+        {% endif %}
+    </section>
+
+</div>
+
 </body>
 </html>

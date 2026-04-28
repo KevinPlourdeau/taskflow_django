@@ -1,23 +1,32 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Modifier une tâche</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
-    <h1>Modifier la tâche : {{ task.title }}</h1>
+<div class="container form-container">
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
+    <div class="page-card">
+        <h1>Modifier la tâche</h1>
+        <p class="subtitle">{{ task.title }}</p>
 
-        <button type="submit">Modifier</button>
-    </form>
+        <form method="POST" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
 
-    <br>
+            <div class="form-actions">
+                <button type="submit" class="button">Modifier</button>
+                <a href="{% url 'task_list' %}" class="button secondary">Annuler</a>
+            </div>
+        </form>
+    </div>
 
-    <a href="/">Retour à la liste</a>
+</div>
 
 </body>
 </html>

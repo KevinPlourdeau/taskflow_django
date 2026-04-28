@@ -1,21 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une tâche</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
 <body>
 
-    <h1>Ajouter une tâche</h1>
+<div class="container form-container">
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
+    <div class="page-card">
+        <h1>Ajouter une tâche</h1>
+        <p class="subtitle">Crée une nouvelle tâche à suivre.</p>
 
-        <button type="submit">
-            Enregistrer
-        </button>
-    </form>
+        <form method="POST" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
 
-    <br>
+            <div class="form-actions">
+                <button type="submit" class="button">Enregistrer</button>
+                <a href="{% url 'task_list' %}" class="button secondary">Annuler</a>
+            </div>
+        </form>
+    </div>
 
-    <a href="/">
-        Retour à la liste
-    </a>
+</div>
 
 </body>
 </html>
