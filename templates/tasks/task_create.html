@@ -1,0 +1,21 @@
+<body>
+
+    <h1>Ajouter une tâche</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">
+            Enregistrer
+        </button>
+    </form>
+
+    <br>
+
+    <a href="/">
+        Retour à la liste
+    </a>
+
+</body>
+</html>
