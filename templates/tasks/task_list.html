@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>TaskFlow</title>
+</head>
+<body>
+    <h1>Mes tâches</h1>
+
+    {% if tasks %}
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    <strong>{{ task.title }}</strong>
+                    — {{ task.get_status_display }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucune tâche pour le moment.</p>
+    {% endif %}
+</body>
+</html>
