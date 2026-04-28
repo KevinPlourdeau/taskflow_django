@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier une tâche</title>
+</head>
+<body>
+
+    <h1>Modifier la tâche : {{ task.title }}</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Modifier</button>
+    </form>
+
+    <br>
+
+    <a href="/">Retour à la liste</a>
+
+</body>
+</html>
