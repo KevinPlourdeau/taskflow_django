@@ -17,6 +17,7 @@
                     <br>
 
                     <a href="{% url 'task_update' task.id %}">Modifier</a>
+                    <a href="{% url 'task_delete' task.id %}">Supprimer</a>
                 </li>
             {% endfor %}
         </ul>
