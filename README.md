@@ -16,8 +16,6 @@ Ce projet me permet de démontrer ma compréhension des bases du développement 
 * Mettre en place un CRUD complet
 * Gérer une base de données avec Django ORM
 * Créer une interface web simple et fonctionnelle
-* Utiliser Git et GitHub dans un vrai projet
-* Construire un projet crédible pour un portfolio développeur
 
 ---
 
@@ -51,9 +49,7 @@ Ce projet me permet de démontrer ma compréhension des bases du développement 
 * HTML
 * CSS
 * SQLite
-* Git
 * GitHub
-* Windows 11
 
 ---
 
